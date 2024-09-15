@@ -1,0 +1,16 @@
+{
+  "name": "argo2id-wasm",
+  "scripts": {
+    "dev": "wrangler dev src/index.ts --port 3000 --ip 0.0.0.0",
+    "cf:deploy": "wrangler deploy --minify src/index.ts",
+    "wasm": "cd wasm && wasm-pack build --release && cp patch.js pkg/argon2id_wasm.js"
+  },
+  "dependencies": {
+    "hono": "^4.6.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240529.0",
+    "wrangler": "^3.57.2"
+  },
+  "packageManager": "pnpm@9.10.0"
+}

@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# Get the current working directory
+PWD="$(cd -- "$(dirname "$0")" >/dev/null 2>&1 && pwd -P)"
+
+# Copy env.example or .env.example to .env if .env does not exist
+if [ ! -f "$PWD/.env" ]; then
+    cp "$PWD"/{env.example,.env.example} "$PWD/.env" 2>/dev/null
+fi
+
+# Load the .env file if it exists
+[ -f "$PWD/.env" ] && . "$PWD/.env"
+
+# Set the name and default exec command
+NAME=${POD_NAME:-$(basename "$PWD")}
+EXEC=${EXEC_COMMAND:-"sh"}
+
+# Action functions
+action_clean() {
+    ./devfiles/clean.sh
+}
+
+action_run() {
+    pnpm "$@"
+}
+
+# Set the default action to "build" if none is provided
+action=${1:-run}
+if [ "$#" -gt 1 ]; then
+  shift
+fi
+
+# Function to check if a function exists
+function_exists() {
+    type "$1" >/dev/null 2>&1
+}
+
+# Call the action function if it exists, otherwise show an error
+if function_exists "action_$action"; then
+    "action_$action" "$@"
+else
+    echo "Error: Unknown action: '$action'"
+    echo "Usage: $0 <action> <args>"
+    exit 1
+fi
