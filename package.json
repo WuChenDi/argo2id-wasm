@@ -2,7 +2,7 @@
   "name": "argo2id-wasm",
   "type": "module",
   "version": "1.0.0",
-  "description": "This project demonstrates how to use a WebAssembly (WASM) module to generate Argon2id hashes within a Cloudflare Workers environment. It showcases the integration of a Rust-compiled WASM module into a Cloudflare Worker, enabling high-performance password hashing functionality.",
+  "description": "Argon2id WASM Demo in Cloudflare Workers",
   "author": "aazf",
   "repository": {
     "type": "http",
