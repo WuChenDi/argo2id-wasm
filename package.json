@@ -1,16 +1,23 @@
 {
   "name": "argo2id-wasm",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "This project demonstrates how to use a WebAssembly (WASM) module to generate Argon2id hashes within a Cloudflare Workers environment. It showcases the integration of a Rust-compiled WASM module into a Cloudflare Worker, enabling high-performance password hashing functionality.",
+  "author": "aazf",
+  "repository": {
+    "type": "http",
+    "url": "https://github.com/zzci/argo2id-wasm.git"
+  },
   "scripts": {
     "dev": "wrangler dev src/index.ts --port 3000 --ip 0.0.0.0",
     "cf:deploy": "wrangler deploy --minify src/index.ts",
     "wasm": "cd wasm && wasm-pack build --release && cp patch.js pkg/argon2id_wasm.js"
   },
   "dependencies": {
-    "hono": "^4.6.1"
+    "hono": "^4.7.10"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240529.0",
-    "wrangler": "^3.57.2"
-  },
-  "packageManager": "pnpm@9.10.0"
+    "@cloudflare/workers-types": "^4.20250520.0",
+    "wrangler": "^4.15.2"
+  }
 }
