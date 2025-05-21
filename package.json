@@ -11,7 +11,8 @@
   "scripts": {
     "dev": "wrangler dev src/index.ts --port 3000 --ip 0.0.0.0",
     "cf:deploy": "wrangler deploy --minify src/index.ts",
-    "wasm": "cd wasm && wasm-pack build --release && cp patch.js pkg/argon2id_wasm.js"
+    "wasm": "cd wasm && wasm-pack build --release && cp patch.js pkg/argon2id_wasm.js",
+    "test:wasm": "cd wasm && wasm-pack test --node"
   },
   "dependencies": {
     "hono": "^4.7.10"
